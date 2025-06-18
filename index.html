@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Advanced AI Interview System 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .interview-container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sphere-container {
+            display: flex;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .sphere {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: sphereFloat 6s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sphere:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes sphereFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .sphere.config {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 142, 83, 0.3));
+            animation-delay: 0s;
+        }
+
+        .sphere.interview {
+            background: linear-gradient(135deg, rgba(72, 187, 120, 0.3), rgba(56, 178, 172, 0.3));
+            animation-delay: 2s;
+        }
+
+        .sphere.results {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+            animation-delay: 4s;
+        }
+
+        .sphere-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .sphere-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .sphere-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sphere-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Enhanced Language Selector - More Visible */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: languagePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes languagePulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2); }
+        }
+
+        .language-selector select {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            outline: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .language-selector select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .face-recognition-panel {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 250px;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+        }
+
+        .face-video {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .emotion-display {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .recording-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            padding: 15px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .timer-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Enhanced Interview Interface with Agent Characters */
+        .interview-interface {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #533483);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: 1500;
+        }
+
+        .interview-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Agent Characters Panel */
+        .agents-panel {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+
+        .agents-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .agent-character {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .agent-character.happy {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.2);
+            animation: happyGlow 2s ease-in-out infinite;
+        }
+
+        .agent-character.neutral {
+            border-color: #FFC107;
+            background: rgba(255, 193, 7, 0.1);
+        }
+
+        .agent-character.concerned {
+            border-color: #FF5722;
+            background: rgba(255, 87, 34, 0.2);
+            animation: concernedPulse 1.5s ease-in-out infinite;
+        }
+
+        .agent-character.thinking {
+            border-color: #9C27B0;
+            background: rgba(156, 39, 176, 0.2);
+            animation: thinkingBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes happyGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
+        }
+
+        @keyframes concernedPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes thinkingBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .agent-face {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .agent-eyes {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .agent-eye {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .agent-mouth {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            border: 2px solid white;
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Emotion-specific facial expressions */
+        .agent-character.happy .agent-eye {
+            transform: scaleY(0.6);
+        }
+
+        .agent-character.happy .agent-mouth {
+            border-radius: 0 0 20px 20px;
+            border-top: none;
+        }
+
+        .agent-character.concerned .agent-eye {
+            background: #FF5722;
+        }
+
+        .agent-character.concerned .agent-mouth {
+            border-radius: 20px 20px 0 0;
+            border-bottom: none;
+            border-top: 2px solid white;
+            bottom: 18px;
+        }
+
+        .agent-character.thinking .agent-eye {
+            animation: blinkThinking 2s ease-in-out infinite;
+        }
+
+        .agent-character.thinking .agent-mouth {
+            border-radius: 50%;
+            width: 6px;
+            height: 6px;
+            border: 2px solid white;
+        }
+
+        @keyframes blinkThinking {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .agent-name {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .agent-status {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .agent-score {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        /* Main Interview Area */
+        .main-interview-area {
+            grid-column: 2;
+            grid-row: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .question-area {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .answer-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            font-size: 1.1rem;
+            resize: none;
+            backdrop-filter: blur(10px);
+        }
+
+        .answer-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Analysis Panel */
+        .analysis-panel {
+            grid-column: 3;
+            grid-row: 1 / -1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+
+        .analysis-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #23a6d5, #23d5ab);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .live-metrics {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .metric-value {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 800px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: hwb(51 54% 8%);
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .interview-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr;
+            }
+            
+            .agents-panel {
+                grid-column: 1;
+                grid-row: 1;
+                height: 200px;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            
+            .agents-panel .agent-character {
+                display: inline-block;
+                width: 150px;
+                margin-right: 15px;
+                vertical-align: top;
+            }
+            
+            .main-interview-area {
+                grid-column: 1;
+                grid-row: 2;
+            }
+            
+            .analysis-panel {
+                grid-column: 1;
+                grid-row: 3;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sphere-container {
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .sphere {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .language-selector {
+                top: 10px;
+                padding: 10px 15px;
+            }
+        }
+
+        .checklist-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .checklist-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            margin: 2% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1200px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            height: 90vh;
+            overflow-y: auto;
+        }
+
+        .recording-player {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.5);
+        }
+
+        .checklist-item.completed {
+            background: rgba(76, 175, 80, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles Background -->
+    <div class="floating-particles" id="particles"></div>
+
+    <!-- Enhanced Language Selector - More Visible -->
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">🇺🇸 English</option>
+            <option value="hi">🇮🇳 हिंदी</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="pt">🇧🇷 Português</option>
+        </select>
+    </div>
+
+    <!-- Timer Display -->
+    <div class="timer-display" id="timerDisplay" style="display: none;">
+        ⏱️ <span id="timer">00:00</span>
+    </div>
+
+    <!-- Face Recognition Panel -->
+    <div class="face-recognition-panel" id="facePanel">
+        <video id="faceVideo" class="face-video" autoplay muted></video>
+        <div class="emotion-display" id="emotionDisplay">😐 Neutral</div>
+    </div>
+
+    <!-- Recording Controls -->
+    <div class="recording-controls" id="recordingControls" style="display: none;">
+        <button class="control-btn" id="recordBtn" onclick="toggleRecording()">🔴</button>
+        <button class="control-btn" id="pauseBtn" onclick="pauseRecording()">⏸️</button>
+        <button class="control-btn" id="stopBtn" onclick="stopRecording()">⏹️</button>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="interview-container" id="mainContainer">
+        <div class="sphere-container">
+            <!-- Configuration Sphere -->
+            <div class="sphere config" onclick="openConfigModal()">
+                <div class="sphere-content">
+                    <div class="sphere-icon">⚙️</div>
+                    <div class="sphere-title" data-translate="setup">Setup Interview</div>
+                    <div class="sphere-subtitle" data-translate="configure">Configure your preferences</div>
+                </div>
+            </div>
+
+            <!-- Interview Sphere -->
+            <div class="sphere interview" onclick="startInterview()">
+                <div class="sphere-content">
+                    <div class="sphere-icon">🎯</div>
+                    <div class="sphere-title" data-translate="start">Start Interview</div>
+                    <div class="sphere-subtitle" data-translate="begin">Begin your assessment</div>
+                </div>
+            </div>
+
+            <!-- Results Sphere -->
+            <div class="sphere results" onclick="viewResults()">
+                <div class="sphere-content">
+                    <div class="sphere-icon">📊</div>
+                    <div class="sphere-title" data-translate="results">View Results</div>
+                    <div class="sphere-subtitle" data-translate="analyze">Analyze performance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Modal -->
+    <div id="configModal" class="modal">
+        <div class="modal-content">
+            <h2 data-translate="interview_config">🎯 Interview Configuration</h2>
+            <form id="configForm">
+                <div class="form-group">
+                    <label data-translate="candidate_name">👤 Candidate Name</label>
+                    <input type="text" id="candidateName" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="email">📧 Email Address</label>
+                    <input type="email" id="candidateEmail" placeholder="your.email@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="position">💼 Position</label>
+                    <select id="candidatePosition" required>
+                        <option value="">Select Position</option>
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="React Developer">React Developer</option>
+                        <option value="Python Developer">Python Developer</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Mobile Developer">Mobile Developer</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                        <option value="Product Manager">Product Manager</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="experience">⭐ Experience Level</label>
+                    <select id="candidateExperience" required>
+                        <option value="">Select Experience</option>
+                        <option value="Fresher (0-1 years)">Fresher (0-1 years)</option>
+                        <option value="Junior (1-3 years)">Junior (1-3 years)</option>
+                        <option value="Mid-level (3-5 years)">Mid-level (3-5 years)</option>
+                        <option value="Senior (5-8 years)">Senior (5-8 years)</option>
+                        <option value="Lead (8+ years)">Lead (8+ years)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="difficulty">🎚️ Interview Difficulty</label>
+                    <select id="interviewDifficulty" required>
+                        <option value="">Select Difficulty</option>
+                        <option value="easy">Easy - Basic concepts</option>
+                        <option value="medium">Medium - Intermediate challenges</option>
+                        <option value="hard">Hard - Advanced scenarios</option>
+                        <option value="mixed">Mixed - Adaptive difficulty</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label data-translate="questions">📊 Number of Questions</label>
+                    <select id="questionCount" required>
+                        <option value="3">3 Questions (Quick)</option>
+                        <option value="5" selected>5 Questions (Standard)</option>
+                        <option value="7">7 Questions (Comprehensive)</option>
+                        <option value="10">10 Questions (Thorough)</option>
+                    </select>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="button" class="btn" onclick="closeConfigModal()" data-translate="cancel">Cancel</button>
+                    <button type="submit" class="btn" data-translate="save_start">Save & Start</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Enhanced Interview Interface with Agent Characters -->
+    <div class="interview-interface" id="interviewInterface">
+        <div class="interview-layout">
+            <!-- AI Agent Characters Panel -->
+            <div class="agents-panel">
+                <div class="agents-title">🤖 AI Interview Coaches</div>
+                
+                <!-- Fluency Monitor -->
+                <div class="agent-character neutral" id="fluencyAgent">
+                    <div class="agent-face">
+                        <div class="agent-eyes">
+                            <div class="agent-eye"></div>
+                            <div class="agent-eye"></div>
+                        </div>
+                        <div class="agent-mouth"></div>
+                    </div>
+                    <div class="agent-name">Fluency Monitor</div>
+                    <div class="agent-status">Tracking speaking pace and filler words</div>
+                    <div class="agent-score" id="fluencyScore">Score: --</div>
+                </div>
+
+                <!-- Vocabulary Expert -->
+                <div class="agent-character neutral" id="vocabularyAgent">
+                    <div class="agent-face">
+                        <div class="agent-eyes">
+                            <div class="agent-eye"></div>
+                            <div class="agent-eye"></div>
+                        </div>
+                        <div class="agent-mouth"></div>
+                    </div>
+                    <div class="agent-name">Vocabulary Expert</div>
+                    <div class="agent-status">Analyzing word diversity and complexity</div>
+                    <div class="agent-score" id="vocabularyScore">Score: --</div>
+                </div>
+
+                <!-- Clarity Coach -->
+                <div class="agent-character neutral" id="clarityAgent">
+                    <div class="agent-face">
+                        <div class="agent-eyes">
+                            <div class="agent-eye"></div>
+                            <div class="agent-eye"></div>
+                        </div>
+                        <div class="agent-mouth"></div>
+                    </div>
+                    <div class="agent-name">Clarity Coach</div>
+                    <div class="agent-status">Monitoring sentence structure and coherence</div>
+                    <div class="agent-score" id="clarityScore">Score: --</div>
+                </div>
+
+                <!-- Pacing Guide -->
+                <div class="agent-character neutral" id="pacingAgent">
+                    <div class="agent-face">
+                        <div class="agent-eyes">
+                            <div class="agent-eye"></div>
+                            <div class="agent-eye"></div>
+                        </div>
+                        <div class="agent-mouth"></div>
+                    </div>
+                    <div class="agent-name">Pacing Guide</div>
+                    <div class="agent-status">Evaluating speaking speed and timing</div>
+                    <div class="agent-score" id="pacingScore">Score: --</div>
+                </div>
+
+                <!-- Technical Advisor -->
+                <div class="agent-character neutral" id="technicalAgent">
+                    <div class="agent-face">
+                        <div class="agent-eyes">
+                            <div class="agent-eye"></div>
+                            <div class="agent-eye"></div>
+                        </div>
+                        <div class="agent-mouth"></div>
+                    </div>
+                    <div class="agent-name">Technical Advisor</div>
+                    <div class="agent-status">Assessing professional terminology usage</div>
+                    <div class="agent-score" id="technicalScore">Score: --</div>
+                </div>
+            </div>
+
+            <!-- Main Interview Area -->
+            <div class="main-interview-area">
+                <div class="question-area">
+                    <div class="question-text" id="questionText" data-translate="loading_question">
+                        🤖 AI is preparing your question...
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn" id="getQuestionBtn" onclick="getNextQuestion()" data-translate="get_question">📝 Get Question</button>
+                        <button class="btn" id="submitAnswerBtn" onclick="submitAnswer()" style="display: none;" data-translate="submit_answer">✅ Submit Answer</button>
+                        <button class="btn" id="skipQuestionBtn" onclick="skipQuestion()" style="display: none;" data-translate="skip_question">⏭️ Skip Question</button>
+                        <button class="btn" id="finishInterviewBtn" onclick="finishInterview()" style="display: none;" data-translate="finish_interview">🏁 Finish Interview</button>
+                    </div>
+                </div>
+                
+                <div class="answer-area">
+                    <textarea 
+                        id="answerInput" 
+                        class="answer-input" 
+                        placeholder="Type your answer here... You can also use voice input by holding the microphone button below."
+                        data-translate-placeholder="answer_placeholder"
+                        oninput="analyzeAnswerRealTime()"
+                    ></textarea>
+                    
+                    <div style="text-align: center;">
+                        <button class="btn" id="voiceBtn" onmousedown="startVoiceInput()" onmouseup="stopVoiceInput()" data-translate="voice_input">🎤 Hold to Speak</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Analysis Panel -->
+            <div class="analysis-panel">
+                <div class="analysis-title">📊 Live Analysis</div>
+                
+                <div class="live-metrics">
+                    <div class="metric-item">
+                        <span>Words Count:</span>
+                        <span class="metric-value" id="wordCount">0</span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Speaking Rate:</span>
+                        <span class="metric-value" id="speakingRate">-- WPM</span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Filler Words:</span>
+                        <span class="metric-value" id="fillerCount">0</span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Unique Words:</span>
+                        <span class="metric-value" id="uniqueWords">0</span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Avg Sentence Length:</span>
+                        <span class="metric-value" id="avgSentenceLength">0</span>
+                    </div>
+                    <div class="metric-item">
+                        <span>Technical Terms:</span>
+                        <span class="metric-value" id="technicalTerms">0</span>
+                    </div>
+                </div>
+
+                <div class="live-metrics">
+                    <h4 style="color: white; margin-bottom: 10px;">🎯 Current Focus</h4>
+                    <div id="currentFocus" style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+                        Start speaking to see live analysis...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checklist Modal for Recordings -->
+    <div id="checklistModal" class="checklist-modal">
+        <div class="checklist-content">
+            <h2 data-translate="interview_review">📹 Interview Review & Self-Assessment</h2>
+            
+            <div class="recording-player">
+                <video id="recordingPlayer" controls style="width: 100%; height: 100%; border-radius: 15px;">
+                    <source id="recordingSource" src="" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <h3 data-translate="improvement_checklist">✅ Interview Improvement Checklist</h3>
+            <div id="checklistItems">
+                <!-- Checklist items will be populated by JavaScript -->
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="closeChecklistModal()" data-translate="close">Close</button>
+                <button class="btn" onclick="downloadReport()" data-translate="download_report">📄 Download Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentLanguage = 'en';
+        let interviewData = {};
+        let currentQuestionIndex = 0;
+        let isRecording = false;
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let interviewStartTime = null;
+        let timerInterval = null;
+        let recognition = null;
+        let faceStream = null;
+        let analysisInterval = null;
+        let speechStartTime = null;
+        let totalWords = 0;
+
+        // Agent analysis data
+        let agentAnalysis = {
+            fluency: { score: 0, status: 'neutral', message: 'Waiting for speech...' },
+            vocabulary: { score: 0, status: 'neutral', message: 'Analyzing word choice...' },
+            clarity: { score: 0, status: 'neutral', message: 'Monitoring coherence...' },
+            pacing: { score: 0, status: 'neutral', message: 'Tracking speech rate...' },
+            technical: { score: 0, status: 'neutral', message: 'Evaluating terminology...' }
+        };
+
+        // Language translations
+        const translations = {
+            en: {
+                setup: "Setup Interview",
+                configure: "Configure your preferences",
+                start: "Start Interview",
+                begin: "Begin your assessment",
+                results: "View Results",
+                analyze: "Analyze performance",
+                interview_config: "🎯 Interview Configuration",
+                candidate_name: "👤 Candidate Name",
+                email: "📧 Email Address",
+                position: "💼 Position",
+                experience: "⭐ Experience Level",
+                difficulty: "🎚️ Interview Difficulty",
+                questions: "📊 Number of Questions",
+                cancel: "Cancel",
+                save_start: "Save & Start",
+                loading_question: "🤖 AI is preparing your question...",
+                get_question: "📝 Get Question",
+                submit_answer: "✅ Submit Answer",
+                skip_question: "⏭️ Skip Question",
+                finish_interview: "🏁 Finish Interview",
+                answer_placeholder: "Type your answer here... You can also use voice input by holding the microphone button below.",
+                voice_input: "🎤 Hold to Speak",
+                interview_review: "📹 Interview Review & Self-Assessment",
+                improvement_checklist: "✅ Interview Improvement Checklist",
+                close: "Close",
+                download_report: "📄 Download Report"
+            },
+            hi: {
+                setup: "साक्षात्कार सेटअप",
+                configure: "अपनी प्राथमिकताएं कॉन्फ़िगर करें",
+                start: "साक्षात्कार शुरू करें",
+                begin: "अपना मूल्यांकन शुरू करें",
+                results: "परिणाम देखें",
+                analyze: "प्रदर्शन का विश्लेषण करें",
+                interview_config: "🎯 साक्षात्कार कॉन्फ़िगरेशन",
+                candidate_name: "👤 उम्मीदवार का नाम",
+                email: "📧 ईमेल पता",
+                position: "💼 पद",
+                experience: "⭐ अनुभव स्तर",
+                difficulty: "🎚️ साक्षात्कार कठिनाई",
+                questions: "📊 प्रश्नों की संख्या",
+                cancel: "रद्द करें",
+                save_start: "सेव करें और शुरू करें",
+                loading_question: "🤖 AI आपका प्रश्न तैयार कर रहा है...",
+                get_question: "📝 प्रश्न प्राप्त करें",
+                submit_answer: "✅ उत्तर जमा करें",
+                skip_question: "⏭️ प्रश्न छोड़ें",
+                finish_interview: "🏁 साक्षात्कार समाप्त करें",
+                answer_placeholder: "यहाँ अपना उत्तर टाइप करें... आप नीचे माइक्रोफ़ोन बटन दबाकर वॉयस इनपुट का भी उपयोग कर सकते हैं।",
+                voice_input: "🎤 बोलने के लिए दबाएं",
+                interview_review: "📹 साक्षात्कार समीक्षा और स्व-मूल्यांकन",
+                improvement_checklist: "✅ साक्षात्कार सुधार चेकलिस्ट",
+                close: "बंद करें",
+                download_report: "📄 रिपोर्ट डाउनलोड करें"
+            }
+        };
+
+        // Interview improvement checklist items
+        const checklistItems = [
+            { id: 1, text: "Maintained good eye contact with the camera", category: "body_language" },
+            { id: 2, text: "Spoke clearly and at appropriate pace", category: "communication" },
+            { id: 3, text: "Provided specific examples to support answers", category: "content" },
+            { id: 4, text: "Showed enthusiasm and positive attitude", category: "attitude" },
+            { id: 5, text: "Asked thoughtful questions about the role/company", category: "engagement" },
+            { id: 6, text: "Demonstrated relevant technical knowledge", category: "technical" },
+            { id: 7, text: "Used professional language and terminology", category: "communication" },
+            { id: 8, text: "Showed problem-solving approach in responses", category: "content" },
+            { id: 9, text: "Maintained confident posture and gestures", category: "body_language" },
+            { id: 10, text: "Stayed within appropriate time limits for answers", category: "time_management" },
+            { id: 11, text: "Demonstrated cultural fit and values alignment", category: "culture" },
+            { id: 12, text: "Showed willingness to learn and grow", category: "attitude" }
+        ];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingParticles();
+            initializeFaceRecognition();
+            setupVoiceRecognition();
+            
+            // Set default language
+            changeLanguage();
+        });
+
+        // Create floating particles background
+        function createFloatingParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 10 + 5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Language change functionality
+        function changeLanguage() {
+            currentLanguage = document.getElementById('languageSelect').value;
+            updateUILanguage();
+        }
+
+        function updateUILanguage() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.textContent = translations[currentLanguage][key];
+                }
+            });
+
+            // Update placeholders
+            const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                if (translations[currentLanguage] && translations[currentLanguage][key]) {
+                    element.placeholder = translations[currentLanguage][key];
+                }
+            });
+        }
+
+        // Agent Analysis Functions
+        function updateAgentEmotion(agentId, emotion, score, message) {
+            const agent = document.getElementById(agentId);
+            const scoreElement = document.getElementById(agentId.replace('Agent', 'Score'));
+            
+            // Remove all emotion classes
+            agent.classList.remove('happy', 'neutral', 'concerned', 'thinking');
+            
+            // Add new emotion class
+            agent.classList.add(emotion);
+            
+            // Update score and status
+            if (scoreElement) {
+                scoreElement.textContent = `Score: ${score}/10`;
+            }
+            
+            // Update status message
+            const statusElement = agent.querySelector('.agent-status');
+            if (statusElement && message) {
+                statusElement.textContent = message;
+            }
+        }
+
+        function analyzeAnswerRealTime() {
+            const answer = document.getElementById('answerInput').value;
+            
+            if (!answer.trim()) {
+                resetAgents();
+                return;
+            }
+
+            // Start speech timing if not already started
+            if (!speechStartTime) {
+                speechStartTime = Date.now();
+            }
+
+            // Analyze different aspects
+            analyzeFluency(answer);
+            analyzeVocabulary(answer);
+            analyzeClarity(answer);
+            analyzePacing(answer);
+            analyzeTechnical(answer);
+            
+            // Update live metrics
+            updateLiveMetrics(answer);
+        }
+
+        function analyzeFluency(text) {
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            const fillerWords = ['um', 'uh', 'like', 'you know', 'basically', 'actually', 'literally'];
+            const fillerCount = words.filter(word => 
+                fillerWords.includes(word.toLowerCase().replace(/[.,!?]/g, ''))
+            ).length;
+            
+            const fillerRatio = words.length > 0 ? fillerCount / words.length : 0;
+            let score = Math.max(0, 10 - (fillerRatio * 20));
+            let emotion = 'neutral';
+            let message = 'Analyzing speech fluency...';
+            
+            if (score >= 8) {
+                emotion = 'happy';
+                message = 'Excellent fluency! Minimal filler words.';
+            } else if (score >= 6) {
+                emotion = 'neutral';
+                message = 'Good fluency with some hesitations.';
+            } else if (score >= 4) {
+                emotion = 'concerned';
+                message = 'Too many filler words detected.';
+            } else {
+                emotion = 'concerned';
+                message = 'Focus on reducing hesitations.';
+            }
+            
+            updateAgentEmotion('fluencyAgent', emotion, Math.round(score), message);
+            document.getElementById('fillerCount').textContent = fillerCount;
+        }
+
+        function analyzeVocabulary(text) {
+            const words = text.split(/\s+/).filter(word => word.length > 2);
+            const uniqueWords = new Set(words.map(word => word.toLowerCase().replace(/[.,!?]/g, '')));
+            const diversityRatio = words.length > 0 ? uniqueWords.size / words.length : 0;
+            
+            let score = Math.min(10, diversityRatio * 15);
+            let emotion = 'neutral';
+            let message = 'Analyzing vocabulary diversity...';
+            
+            if (score >= 8) {
+                emotion = 'happy';
+                message = 'Rich vocabulary usage!';
+            } else if (score >= 6) {
+                emotion = 'neutral';
+                message = 'Good word variety.';
+            } else if (score >= 4) {
+                emotion = 'thinking';
+                message = 'Try using more diverse vocabulary.';
+            } else {
+                emotion = 'concerned';
+                message = 'Limited vocabulary range detected.';
+            }
+            
+            updateAgentEmotion('vocabularyAgent', emotion, Math.round(score), message);
+            document.getElementById('uniqueWords').textContent = uniqueWords.size;
+        }
+
+        function analyzeClarity(text) {
+            const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const avgSentenceLength = sentences.length > 0 ? 
+                text.split(/\s+/).length / sentences.length : 0;
+            
+            let score = 10;
+            let emotion = 'neutral';
+            let message = 'Analyzing sentence structure...';
+            
+            // Ideal sentence length is 15-25 words
+            if (avgSentenceLength >= 15 && avgSentenceLength <= 25) {
+                score = 10;
+                emotion = 'happy';
+                message = 'Perfect sentence structure!';
+            } else if (avgSentenceLength >= 10 && avgSentenceLength <= 30) {
+                score = 8;
+                emotion = 'neutral';
+                message = 'Good sentence clarity.';
+            } else if (avgSentenceLength < 10) {
+                score = 6;
+                emotion = 'thinking';
+                message = 'Sentences could be more detailed.';
+            } else {
+                score = 5;
+                emotion = 'concerned';
+                message = 'Sentences are too long. Break them down.';
+            }
+            
+            updateAgentEmotion('clarityAgent', emotion, Math.round(score), message);
+            document.getElementById('avgSentenceLength').textContent = Math.round(avgSentenceLength);
+        }
+
+        function analyzePacing(text) {
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            const timeElapsed = speechStartTime ? (Date.now() - speechStartTime) / 1000 / 60 : 1; // minutes
+            const wpm = timeElapsed > 0 ? words.length / timeElapsed : 0;
+            
+            let score = 10;
+            let emotion = 'neutral';
+            let message = 'Analyzing speaking pace...';
+            
+            // Ideal speaking rate is 150-180 WPM
+            if (wpm >= 150 && wpm <= 180) {
+                score = 10;
+                emotion = 'happy';
+                message = 'Perfect speaking pace!';
+            } else if (wpm >= 120 && wpm <= 200) {
+                score = 8;
+                emotion = 'neutral';
+                message = 'Good speaking rate.';
+            } else if (wpm < 120) {
+                score = 6;
+                emotion = 'thinking';
+                message = 'Try speaking a bit faster.';
+            } else {
+                score = 5;
+                emotion = 'concerned';
+                message = 'Slow down your speaking pace.';
+            }
+            
+            updateAgentEmotion('pacingAgent', emotion, Math.round(score), message);
+            document.getElementById('speakingRate').textContent = Math.round(wpm) + ' WPM';
+        }
+
+        function analyzeTechnical(text) {
+            const technicalTerms = [
+                'algorithm', 'database', 'framework', 'architecture', 'scalability',
+                'optimization', 'implementation', 'methodology', 'integration',
+                'deployment', 'performance', 'security', 'authentication', 'api',
+                'microservices', 'containerization', 'devops', 'ci/cd', 'testing',
+                'debugging', 'refactoring', 'documentation', 'version control'
+            ];
+            
+            const words = text.toLowerCase().split(/\s+/);
+            const technicalCount = words.filter(word => 
+                technicalTerms.some(term => word.includes(term))
+            ).length;
+            
+            let score = Math.min(10, technicalCount * 2);
+            let emotion = 'neutral';
+            let message = 'Analyzing technical terminology...';
+            
+            if (technicalCount >= 5) {
+                emotion = 'happy';
+                message = 'Excellent use of technical terms!';
+            } else if (technicalCount >= 3) {
+                emotion = 'neutral';
+                message = 'Good technical vocabulary.';
+            } else if (technicalCount >= 1) {
+                emotion = 'thinking';
+                message = 'Include more technical terms.';
+            } else {
+                emotion = 'concerned';
+                message = 'Use relevant technical terminology.';
+            }
+            
+            updateAgentEmotion('technicalAgent', emotion, Math.round(score), message);
+            document.getElementById('technicalTerms').textContent = technicalCount;
+        }
+
+        function updateLiveMetrics(text) {
+            const words = text.split(/\s+/).filter(word => word.length > 0);
+            document.getElementById('wordCount').textContent = words.length;
+            
+            // Update current focus
+            const focusMessages = [
+                "Keep speaking naturally and confidently",
+                "Great job! Agents are analyzing your response",
+                "Focus on clear pronunciation and pacing",
+                "Include specific examples in your answer",
+                "Use technical terms relevant to the role"
+            ];
+            
+            const randomMessage = focusMessages[Math.floor(Math.random() * focusMessages.length)];
+            document.getElementById('currentFocus').textContent = randomMessage;
+        }
+
+        function resetAgents() {
+            const agents = ['fluencyAgent', 'vocabularyAgent', 'clarityAgent', 'pacingAgent', 'technicalAgent'];
+            agents.forEach(agentId => {
+                updateAgentEmotion(agentId, 'neutral', 0, 'Waiting for input...');
+            });
+            
+            // Reset metrics
+            document.getElementById('wordCount').textContent = '0';
+            document.getElementById('speakingRate').textContent = '-- WPM';
+            document.getElementById('fillerCount').textContent = '0';
+            document.getElementById('uniqueWords').textContent = '0';
+            document.getElementById('avgSentenceLength').textContent = '0';
+            document.getElementById('technicalTerms').textContent = '0';
+            document.getElementById('currentFocus').textContent = 'Start speaking to see live analysis...';
+            
+            speechStartTime = null;
+        }
+
+        // Modal functions
+        function openConfigModal() {
+            document.getElementById('configModal').style.display = 'block';
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').style.display = 'none';
+        }
+
+        // Face recognition initialization
+        async function initializeFaceRecognition() {
+            try {
+                faceStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { width: 250, height: 200 } 
+                });
+                document.getElementById('faceVideo').srcObject = faceStream;
+                
+                // Start emotion detection
+                startEmotionDetection();
+            } catch (error) {
+                console.error('Error accessing camera for face recognition:', error);
+            }
+        }
+
+        function startEmotionDetection() {
+            const emotions = ['😊 Happy', '😐 Neutral', '😔 Sad', '😮 Surprised', '😠 Angry', '😨 Fearful'];
+            let currentEmotion = 0;
+            
+            setInterval(() => {
+                document.getElementById('emotionDisplay').textContent = emotions[currentEmotion];
+                currentEmotion = (currentEmotion + 1) % emotions.length;
+            }, 3000);
+        }
+
+        // Voice recognition setup
+        function setupVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('answerInput').value += transcript + ' ';
+                    analyzeAnswerRealTime(); // Trigger real-time analysis
+                };
+            }
+        }
+
+        function startVoiceInput() {
+            if (recognition) {
+                recognition.lang = getLanguageCode(currentLanguage);
+                recognition.start();
+                document.getElementById('voiceBtn').style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
+                
+                // Start speech timing for pacing analysis
+                if (!speechStartTime) {
+                    speechStartTime = Date.now();
+                }
+            }
+        }
+
+        function stopVoiceInput() {
+            if (recognition) {
+                recognition.stop();
+                document.getElementById('voiceBtn').style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }
+        }
+
+        function getLanguageCode(lang) {
+            const langCodes = {
+                'en': 'en-US',
+                'hi': 'hi-IN',
+                'es': 'es-ES',
+                'fr': 'fr-FR',
+                'de': 'de-DE',
+                'zh': 'zh-CN',
+                'ja': 'ja-JP',
+                'ko': 'ko-KR',
+                'ar': 'ar-SA',
+                'pt': 'pt-BR'
+            };
+            return langCodes[lang] || 'en-US';
+        }
+
+        // Interview functions
+        function startInterview() {
+            // Validate configuration
+            if (!interviewData.candidateName) {
+                openConfigModal();
+                return;
+            }
+
+            document.getElementById('mainContainer').style.display = 'none';
+            document.getElementById('interviewInterface').style.display = 'block';
+            document.getElementById('facePanel').style.display = 'block';
+            document.getElementById('recordingControls').style.display = 'flex';
+            document.getElementById('timerDisplay').style.display = 'block';
+
+            // Start recording and timer
+            startInterviewRecording();
+            startTimer();
+            
+            // Reset agents
+            resetAgents();
+            
+            currentQuestionIndex = 0;
+        }
+
+        function startTimer() {
+            interviewStartTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            const elapsed = Date.now() - interviewStartTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        async function getNextQuestion() {
+            try {
+                const response = await fetch('/get_question', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        questionIndex: currentQuestionIndex,
+                        candidateInfo: interviewData,
+                        language: currentLanguage
+                    })
+                });
+
+                const data = await response.json();
+                
+                                if (data.finished) {
+                    finishInterview();
+                    return;
+                }
+
+                document.getElementById('questionText').textContent = data.question;
+                document.getElementById('getQuestionBtn').style.display = 'none';
+                document.getElementById('submitAnswerBtn').style.display = 'inline-block';
+                document.getElementById('skipQuestionBtn').style.display = 'inline-block';
+                
+                if (currentQuestionIndex >= parseInt(interviewData.questionCount) - 1) {
+                    document.getElementById('finishInterviewBtn').style.display = 'inline-block';
+                }
+
+                // Reset agents for new question
+                resetAgents();
+                document.getElementById('answerInput').value = '';
+
+                // Speak the question if text-to-speech is available
+                speakText(data.question);
+
+            } catch (error) {
+                console.error('Error getting question:', error);
+                document.getElementById('questionText').textContent = 'Error loading question. Please try again.';
+            }
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = getLanguageCode(currentLanguage);
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        async function submitAnswer() {
+            const answer = document.getElementById('answerInput').value;
+            
+            if (!answer.trim()) {
+                alert('Please provide an answer before submitting.');
+                return;
+            }
+
+            try {
+                // Get final agent scores
+                const agentScores = {
+                    fluency: Math.round(parseFloat(document.getElementById('fluencyScore').textContent.split(': ')[1]) || 0),
+                    vocabulary: Math.round(parseFloat(document.getElementById('vocabularyScore').textContent.split(': ')[1]) || 0),
+                    clarity: Math.round(parseFloat(document.getElementById('clarityScore').textContent.split(': ')[1]) || 0),
+                    pacing: Math.round(parseFloat(document.getElementById('pacingScore').textContent.split(': ')[1]) || 0),
+                    technical: Math.round(parseFloat(document.getElementById('technicalScore').textContent.split(': ')[1]) || 0)
+                };
+
+                await fetch('/submit_answer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        questionIndex: currentQuestionIndex,
+                        question: document.getElementById('questionText').textContent,
+                        answer: answer,
+                        questionType: 'technical',
+                        language: currentLanguage,
+                        agentScores: agentScores,
+                        liveMetrics: {
+                            wordCount: parseInt(document.getElementById('wordCount').textContent),
+                            speakingRate: document.getElementById('speakingRate').textContent,
+                            fillerCount: parseInt(document.getElementById('fillerCount').textContent),
+                            uniqueWords: parseInt(document.getElementById('uniqueWords').textContent),
+                            avgSentenceLength: parseInt(document.getElementById('avgSentenceLength').textContent),
+                            technicalTerms: parseInt(document.getElementById('technicalTerms').textContent)
+                        }
+                    })
+                });
+
+                // Show success feedback to agents
+                showSuccessFeedback();
+
+                // Clear answer and move to next question
+                currentQuestionIndex++;
+                
+                document.getElementById('submitAnswerBtn').style.display = 'none';
+                document.getElementById('skipQuestionBtn').style.display = 'none';
+                document.getElementById('getQuestionBtn').style.display = 'inline-block';
+                document.getElementById('questionText').textContent = '🤖 AI is preparing your next question...';
+
+            } catch (error) {
+                console.error('Error submitting answer:', error);
+                alert('Error submitting answer. Please try again.');
+            }
+        }
+
+        function showSuccessFeedback() {
+            // Temporarily show all agents as happy
+            const agents = ['fluencyAgent', 'vocabularyAgent', 'clarityAgent', 'pacingAgent', 'technicalAgent'];
+            agents.forEach(agentId => {
+                const agent = document.getElementById(agentId);
+                agent.classList.remove('neutral', 'concerned', 'thinking');
+                agent.classList.add('happy');
+                
+                const statusElement = agent.querySelector('.agent-status');
+                statusElement.textContent = 'Answer submitted successfully! ✅';
+            });
+
+            // Reset after 3 seconds
+            setTimeout(() => {
+                resetAgents();
+            }, 3000);
+        }
+
+        function skipQuestion() {
+            currentQuestionIndex++;
+            document.getElementById('answerInput').value = '';
+            document.getElementById('submitAnswerBtn').style.display = 'none';
+            document.getElementById('skipQuestionBtn').style.display = 'none';
+            document.getElementById('getQuestionBtn').style.display = 'inline-block';
+            document.getElementById('questionText').textContent = '🤖 AI is preparing your next question...';
+            
+            // Reset agents
+            resetAgents();
+        }
+
+        async function finishInterview() {
+            try {
+                const response = await fetch('/finish_interview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        language: currentLanguage,
+                        finalAgentScores: {
+                            fluency: Math.round(parseFloat(document.getElementById('fluencyScore').textContent.split(': ')[1]) || 0),
+                            vocabulary: Math.round(parseFloat(document.getElementById('vocabularyScore').textContent.split(': ')[1]) || 0),
+                            clarity: Math.round(parseFloat(document.getElementById('clarityScore').textContent.split(': ')[1]) || 0),
+                            pacing: Math.round(parseFloat(document.getElementById('pacingScore').textContent.split(': ')[1]) || 0),
+                            technical: Math.round(parseFloat(document.getElementById('technicalScore').textContent.split(': ')[1]) || 0)
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Stop recording and timer
+                stopRecording();
+                clearInterval(timerInterval);
+
+                // Show completion animation
+                showCompletionAnimation();
+
+                // Show results after animation
+                setTimeout(() => {
+                    alert(`Interview completed! Your overall score: ${data.overall_score}/10`);
+                    
+                    // Return to main interface
+                    document.getElementById('interviewInterface').style.display = 'none';
+                    document.getElementById('mainContainer').style.display = 'flex';
+                    document.getElementById('facePanel').style.display = 'none';
+                    document.getElementById('recordingControls').style.display = 'none';
+                    document.getElementById('timerDisplay').style.display = 'none';
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error finishing interview:', error);
+                alert('Error finishing interview. Please try again.');
+            }
+        }
+
+        function showCompletionAnimation() {
+            // Show all agents as happy with celebration
+            const agents = ['fluencyAgent', 'vocabularyAgent', 'clarityAgent', 'pacingAgent', 'technicalAgent'];
+            agents.forEach((agentId, index) => {
+                setTimeout(() => {
+                    const agent = document.getElementById(agentId);
+                    agent.classList.remove('neutral', 'concerned', 'thinking');
+                    agent.classList.add('happy');
+                    
+                    const statusElement = agent.querySelector('.agent-status');
+                    statusElement.textContent = '🎉 Interview Complete! Great job!';
+                    
+                    // Add celebration effect
+                    agent.style.animation = 'celebrationBounce 0.6s ease-in-out';
+                }, index * 200);
+            });
+        }
+
+        // Recording functions
+        async function startInterviewRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: true, 
+                    audio: true 
+                });
+                
+                mediaRecorder = new MediaRecorder(stream);
+                recordedChunks = [];
+
+                mediaRecorder.ondataavailable = function(event) {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    // Store recording for later review
+                    localStorage.setItem('lastInterviewRecording', url);
+                    localStorage.setItem('lastInterviewData', JSON.stringify({
+                        timestamp: new Date().toISOString(),
+                        duration: Date.now() - interviewStartTime,
+                        candidateInfo: interviewData
+                    }));
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                document.getElementById('recordBtn').textContent = '🔴';
+                document.getElementById('recordBtn').style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
+
+            } catch (error) {
+                console.error('Error starting recording:', error);
+                alert('Could not start recording. Please check camera permissions.');
+            }
+        }
+
+        function toggleRecording() {
+            if (isRecording) {
+                pauseRecording();
+            } else {
+                resumeRecording();
+            }
+        }
+
+        function pauseRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+                mediaRecorder.pause();
+                isRecording = false;
+                document.getElementById('recordBtn').textContent = '▶️';
+                document.getElementById('recordBtn').style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+            }
+        }
+
+        function resumeRecording() {
+            if (mediaRecorder && mediaRecorder.state === 'paused') {
+                mediaRecorder.resume();
+                isRecording = true;
+                document.getElementById('recordBtn').textContent = '⏸️';
+                document.getElementById('recordBtn').style.background = 'linear-gradient(135deg, #ff6b6b, #ee5a24)';
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder) {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(track => track.stop());
+                isRecording = false;
+                document.getElementById('recordBtn').textContent = '🔴';
+                document.getElementById('recordBtn').style.background = 'rgba(255, 255, 255, 0.2)';
+            }
+        }
+
+        // Results and checklist functions
+        function viewResults() {
+            const recordingUrl = localStorage.getItem('lastInterviewRecording');
+            const interviewData = localStorage.getItem('lastInterviewData');
+            
+            if (recordingUrl && interviewData) {
+                showChecklistModal(recordingUrl, JSON.parse(interviewData));
+            } else {
+                alert('No interview recording found. Please complete an interview first.');
+            }
+        }
+
+        function showChecklistModal(recordingUrl, interviewData) {
+            document.getElementById('recordingSource').src = recordingUrl;
+            document.getElementById('recordingPlayer').load();
+            
+            // Populate checklist
+            const checklistContainer = document.getElementById('checklistItems');
+            checklistContainer.innerHTML = '';
+            
+            // Add interview summary
+            const summaryDiv = document.createElement('div');
+            summaryDiv.style.cssText = 'background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px; color: white;';
+            summaryDiv.innerHTML = `
+                <h4>📊 Interview Summary</h4>
+                <p><strong>Date:</strong> ${new Date(interviewData.timestamp).toLocaleDateString()}</p>
+                <p><strong>Duration:</strong> ${Math.round(interviewData.duration / 60000)} minutes</p>
+                <p><strong>Candidate:</strong> ${interviewData.candidateInfo?.candidateName || 'N/A'}</p>
+                <p><strong>Position:</strong> ${interviewData.candidateInfo?.position || 'N/A'}</p>
+            `;
+            checklistContainer.appendChild(summaryDiv);
+            
+            checklistItems.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'checklist-item';
+                itemElement.innerHTML = `
+                    <input type="checkbox" id="check_${item.id}" onchange="toggleChecklistItem(${item.id})">
+                    <label for="check_${item.id}">
+                        <strong>${item.category.replace('_', ' ').toUpperCase()}:</strong> ${item.text}
+                    </label>
+                `;
+                checklistContainer.appendChild(itemElement);
+            });
+
+            document.getElementById('checklistModal').style.display = 'block';
+        }
+
+        function toggleChecklistItem(itemId) {
+            const checkbox = document.getElementById(`check_${itemId}`);
+            const itemElement = checkbox.closest('.checklist-item');
+            
+            if (checkbox.checked) {
+                itemElement.classList.add('completed');
+                // Add completion sound effect (optional)
+                playCompletionSound();
+            } else {
+                itemElement.classList.remove('completed');
+            }
+            
+            // Update progress
+            updateChecklistProgress();
+        }
+
+        function updateChecklistProgress() {
+            const totalItems = checklistItems.length;
+            const completedItems = document.querySelectorAll('.checklist-item.completed').length;
+            const progressPercentage = Math.round((completedItems / totalItems) * 100);
+            
+            // Create or update progress bar
+            let progressBar = document.getElementById('progressBar');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'progressBar';
+                progressBar.style.cssText = `
+                    background: rgba(255,255,255,0.1);
+                    height: 20px;
+                    border-radius: 10px;
+                    margin: 20px 0;
+                    overflow: hidden;
+                `;
+                
+                const progressFill = document.createElement('div');
+                progressFill.id = 'progressFill';
+                progressFill.style.cssText = `
+                    height: 100%;
+                    background: linear-gradient(135deg, #4CAF50, #45a049);
+                    width: 0%;
+                    transition: width 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 12px;
+                `;
+                
+                progressBar.appendChild(progressFill);
+                document.querySelector('.checklist-content').insertBefore(progressBar, document.getElementById('checklistItems'));
+            }
+            
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = progressPercentage + '%';
+            progressFill.textContent = `${progressPercentage}% Complete`;
+        }
+
+        function playCompletionSound() {
+            // Create a simple audio feedback
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+        }
+
+        function closeChecklistModal() {
+            document.getElementById('checklistModal').style.display = 'none';
+        }
+
+        function downloadReport() {
+            // Generate and download comprehensive PDF report
+            window.open('/download_report', '_blank');
+        }
+
+        // Configuration form submission
+        document.getElementById('configForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            interviewData = {
+                candidateName: document.getElementById('candidateName').value,
+                candidateEmail: document.getElementById('candidateEmail').value,
+                position: document.getElementById('candidatePosition').value,
+                experience: document.getElementById('candidateExperience').value,
+                difficulty: document.getElementById('interviewDifficulty').value,
+                questionCount: document.getElementById('questionCount').value,
+                language: currentLanguage,
+                timestamp: new Date().toISOString()
+            };
+            
+            closeConfigModal();
+            
+            // Show loading animation before starting
+            showLoadingAnimation();
+            
+            setTimeout(() => {
+                startInterview();
+            }, 2000);
+        });
+
+        function showLoadingAnimation() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loadingAnimation';
+            loadingDiv.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 5000;
+                color: white;
+                font-size: 1.5rem;
+            `;
+            
+            loadingDiv.innerHTML = `
+                <div style="animation: spin 2s linear infinite; font-size: 4rem; margin-bottom: 20px;">⚙️</div>
+                <div>Preparing your AI interview experience...</div>
+                <div style="font-size: 1rem; opacity: 0.7; margin-top: 10px;">Setting up agents and analysis tools</div>
+            `;
+            
+            document.body.appendChild(loadingDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(loadingDiv);
+            }, 2000);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const configModal = document.getElementById('configModal');
+            const checklistModal = document.getElementById('checklistModal');
+            
+            if (event.target === configModal) {
+                closeConfigModal();
+            }
+            if (event.target === checklistModal) {
+                closeChecklistModal();
+            }
+        };
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + Enter to submit answer
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                const submitBtn = document.getElementById('submitAnswerBtn');
+                if (submitBtn.style.display !== 'none') {
+                    submitAnswer();
+                }
+            }
+            
+            // Escape to close modals
+            if (event.key === 'Escape') {
+                closeConfigModal();
+                closeChecklistModal();
+            }
+        });
+
+        // Add celebration animation CSS
+        const celebrationCSS = `
+            @keyframes celebrationBounce {
+                0%, 100% { transform: translateY(0) scale(1); }
+                25% { transform: translateY(-10px) scale(1.1); }
+                50% { transform: translateY(-5px) scale(1.05); }
+                75% { transform: translateY(-8px) scale(1.08); }
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = celebrationCSS;
+        document.head.appendChild(styleSheet);
+
+        // Auto-save functionality
+        setInterval(() => {
+            const currentAnswer = document.getElementById('answerInput')?.value;
+            if (currentAnswer && currentAnswer.length > 10) {
+                localStorage.setItem('autoSavedAnswer', currentAnswer);
+                localStorage.setItem('autoSaveTimestamp', Date.now());
+            }
+        }, 30000); // Auto-save every 30 seconds
+
+        // Restore auto-saved answer on page load
+        window.addEventListener('load', () => {
+            const savedAnswer = localStorage.getItem('autoSavedAnswer');
+            const saveTimestamp = localStorage.getItem('autoSaveTimestamp');
+            
+            if (savedAnswer && saveTimestamp) {
+                const timeDiff = Date.now() - parseInt(saveTimestamp);
+                // If saved less than 1 hour ago
+                if (timeDiff < 3600000) {
+                    const answerInput = document.getElementById('answerInput');
+                    if (answerInput && confirm('Restore previously saved answer?')) {
+                        answerInput.value = savedAnswer;
+                        analyzeAnswerRealTime();
+                    }
+                }
+            }
+        });
+
+        // Performance monitoring
+        let performanceMetrics = {
+            pageLoadTime: 0,
+            firstInteractionTime: 0,
+            questionLoadTimes: [],
+            analysisResponseTimes: []
+        };
+
+        window.addEventListener('load', () => {
+            performanceMetrics.pageLoadTime = performance.now();
+        });
+
+        // Track first user interaction
+        document.addEventListener('click', function firstClick() {
+            performanceMetrics.firstInteractionTime = performance.now();
+            document.removeEventListener('click', firstClick);
+        }, { once: true });
+
+        console.log('🚀 Advanced AI Interview System 2025 - Loaded Successfully!');
+        console.log('Features: Multilingual Support, AI Agents, Real-time Analysis, Face Recognition');
+    </script>
+</body>
+</html>
+
+                    
